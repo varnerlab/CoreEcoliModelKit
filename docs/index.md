@@ -6,3 +6,5 @@ This package is a [Julia](https://julialang.org/downloads/) implementation of th
 We've ported the parts of the [COBRA](https://opencobra.github.io/cobratoolbox/stable/) toolbox to [Julia](https://julialang.org/downloads/), added a few extra constraints, and reformulated some of the constraints.
 
 ### Table of contents
+[Installation](/installation/README.md)
+[Example calculations](/examples/README.md)
