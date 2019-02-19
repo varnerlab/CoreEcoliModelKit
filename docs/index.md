@@ -1,4 +1,4 @@
-## Core _E.coli_ metabolic model
+## CoreEcoliModelKit: A Julia package for the Core _E.coli_ metabolic model
 This package is a [Julia](https://julialang.org/downloads/) implementation of the core _E.coli_ metabolic model of Palsson and coworkers:
 
 [Orth JD, Fleming RMT, and B.O. Palsson (2010) Reconstruction and Use of Microbial Metabolic Networks: the Core Escherichia coli Metabolic Model as an Educational Guide. EcoSal Plus 2013; doi:10.1128/ ecosalplus.10.2.1](https://www.ncbi.nlm.nih.gov/pubmed/26443778)
