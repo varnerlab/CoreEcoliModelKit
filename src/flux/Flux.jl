@@ -135,6 +135,11 @@ function calculate_optimal_flux_distribution(data_dictionary)
     		flux_constraint_type = GLPK.DB
     	end
 
+        # check -
+        if (flux_upper_bound < flux_lower_bound)
+            println("Bound violation at $(flux_index)")
+        end
+
     	# flux symbol? (later use name - for now, fake it)
     	flux_symbol = "R_"*string(flux_index)
 
