@@ -108,7 +108,7 @@ function constrain_measured_fluxes(data_dictionary::Dict{String,Any}, path_to_me
 
             # what is the measured value?
             distrubution = Distributions.Normal(mean_measured_value, coefficient_of_variation*mean_measured_value)
-            measured_value = rand(distrubution)
+            measured_value = abs(rand(distrubution))
 
             # get the actual index -
             idx_reaction = (getindex(idx_reaction_match))[1]
