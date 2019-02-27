@@ -42,13 +42,9 @@ function constrain_measured_metabolites(data_dictionary::Dict{String,Any}, path_
     # get the stoichiometric_matrix -
     stoichiometric_matrix = copy(data_dictionary["stoichiometric_matrix"])
 
-    @show "WTW?"
-
     # get the metabolite measurement information -
     absolute_metabolite_measurement_dictionary = measurements_dictionary["absolute_metabolite_measurements"]
     for (metabolite_key, local_measurement_dict) in absolute_metabolite_measurement_dictionary
-
-        @show metabolite_key
 
         # ok, so we have a metabolite_key - find the index of this metabolite in the metabolite list -
         idx_metabolite_match = findall(list_of_metabolite_symbols .== metabolite_key)
@@ -69,8 +65,6 @@ function constrain_measured_metabolites(data_dictionary::Dict{String,Any}, path_
             metabolite_index = (getindex(idx_metabolite_match))[1]
             old_value = stoichiometric_matrix[metabolite_index,growth_rate_reaction_index]
             stoichiometric_matrix[metabolite_index,growth_rate_reaction_index] = (old_value - value)
-
-            @show (value,metabolite_key,metabolite_index)
         end
     end
 
