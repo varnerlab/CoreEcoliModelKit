@@ -2,6 +2,9 @@
   "flux_ratio_measurements":{
   },
 
+  "absolute_metabolite_measurements":{
+  },
+
   "exchange_flux_measurements":{
     "EX_glc(e)":{
       "mean_value":"4.8",
