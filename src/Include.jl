@@ -16,6 +16,7 @@ using ProgressMeter
 
 # constants -
 const path_to_package = dirname(pathof(@__MODULE__))
+const growth_rate_reaction_index = 13
 
 # local code -
 include("./flux/Flux.jl")

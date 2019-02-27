@@ -31,6 +31,44 @@ function optimize_flux_at_index(index_array::Array{Int64,1}, data_dictionary::Di
     return data_dictionary
 end
 
+function constrain_measured_metabolites(data_dictionary::Dict{String,Any}, path_to_measurements_file::String)
+
+    # from the data dictionary, get the list of metabolite symbols -
+    list_of_metabolite_symbols = data_dictionary["list_of_metabolite_symbols"]
+
+    # load the measurements file -
+    measurements_dictionary = JSON.parsefile(path_to_measurements_file)
+
+    # get the stoichiometric_matrix -
+    stoichiometric_matrix = data_dictionary["stoichiometric_matrix"]
+
+    # get the metabolite measurement information -
+    absolute_metabolite_measurement_dictionary = measurements_dictionary["absolute_metabolite_measurements"]
+    for (metabolite_key, local_measurement_dict) in absolute_metabolite_measurement_dictionary
+
+        # ok, so we have a metabolite_key - find the index of this metabolite in the metabolite list -
+        idx_metabolite_match = findall(list_of_metabolite_symbols .== metabolite_key)
+
+        # if we have this metabolite, update the STM -
+        if (isempty(idx_metabolite_match) == false)
+
+            # get experimental values -
+            mean_ratio_value = parse(Float64,local_measurement_dict["mean_value"])
+            lower_bound = parse(Float64,local_measurement_dict["lower_bound"])
+            upper_bound = parse(Float64,local_measurement_dict["upper_bound"])
+
+            # compute a value -
+            r_value = rand()
+            value = (1 - r_value)*lower_bound + r_value*(upper_bound)
+
+            # update the stm -
+            metabolite_index = (getindex(idx_metabolite_match))[1]
+            old_value = stoichiometric_matrix[metabolite_index,growth_rate_reaction_index]
+            stoichiometric_matrix[metabolite_index,growth_rate_reaction_index] = (old_value - value)
+        end
+    end
+end
+
 function constrain_measured_fluxes(data_dictionary::Dict{String,Any}, path_to_measurements_file::String)
 
     # TODO: is the path_to_measurements_file legit?
