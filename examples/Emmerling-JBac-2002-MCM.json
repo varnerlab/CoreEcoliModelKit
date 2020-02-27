@@ -70,7 +70,7 @@
       "mean_value":"10.0",
       "coefficient_of_variation":"0.1",
       "units":"mmol/gDW-hr",
-      "directionality":"ouput"
+      "directionality":"output"
     },
     "EX_ac(e)":{
       "mean_value":"20.0",
